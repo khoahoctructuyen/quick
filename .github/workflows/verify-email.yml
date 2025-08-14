@@ -1,0 +1,24 @@
+name: Verify Email & Test
+
+on:
+  workflow_dispatch: # Chạy thủ công
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  verify-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run verify-email script
+        run: |
+          echo "▶️ Đang chạy script check-email.js..."
+          node check-email.js
